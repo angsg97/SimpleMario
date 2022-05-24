@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Enemy
+  - Main Menu
+  - Game Over
   layers:
   - Default
   - TransparentFX
