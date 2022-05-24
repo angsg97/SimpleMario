@@ -57,6 +57,10 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(score);
             }
         }
+
+        if (!onGroundState) {
+            transform.Rotate(0f, 0f, 3f, Space.Self);
+        }
     }
 
     void FixedUpdate()
