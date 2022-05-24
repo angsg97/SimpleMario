@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -19,8 +18,13 @@ public class PlayerController : MonoBehaviour
     // Scoring system vars
     public Transform enemyLocation;
     public Text scoreText;
+    public Text gameOverScoreText;
     private int score = 0;
     private bool countScoreState = false;
+
+    // get game reset function from MenuController
+    public MenuController menuController;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyUp("a") || Input.GetKeyUp("d")) {
             // stop
-            marioBody.velocity = Vector2.zero;
+            marioBody.velocity = new Vector2(0, marioBody.velocity.y);
         }
 
         if (Input.GetKeyDown("space") && onGroundState)
@@ -103,11 +107,8 @@ public class PlayerController : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.CompareTag("Enemy")) {
             Debug.Log("Collided with Gomba!");
-            resetGame();
+            gameOverScoreText.text = "Your Final Score: " + score.ToString();
+            menuController.showGameOverScreen();
         }
-    }
-
-    private void resetGame() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }
