@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
 
     // get game reset function from MenuController
     public MenuController menuController;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -41,12 +41,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // toggle state
-        if (Input.GetKeyDown("a") && faceRightState) {
+        if (Input.GetKeyDown("a") && faceRightState)
+        {
             faceRightState = false;
             marioSprite.flipX = true;
         }
 
-        if (Input.GetKeyDown("d") && !faceRightState) {
+        if (Input.GetKeyDown("d") && !faceRightState)
+        {
             faceRightState = true;
             marioSprite.flipX = false;
         }
@@ -62,7 +64,8 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        if (!onGroundState) {
+        if (!onGroundState)
+        {
             transform.Rotate(0f, 0f, 3f, Space.Self);
         }
     }
@@ -75,13 +78,15 @@ public class PlayerController : MonoBehaviour
         // dynamic rigidbody
         float moveHorizontal = Input.GetAxis("Horizontal");
 
-        if (Mathf.Abs(moveHorizontal) > 0) {
+        if (Mathf.Abs(moveHorizontal) > 0)
+        {
             Vector2 movement = new Vector2(moveHorizontal, 0);
             if (marioBody.velocity.magnitude < maxSpeed)
                 marioBody.AddForce(movement * speed);
         }
 
-        if (Input.GetKeyUp("a") || Input.GetKeyUp("d")) {
+        if (Input.GetKeyUp("a") || Input.GetKeyUp("d"))
+        {
             // stop
             marioBody.velocity = new Vector2(0, marioBody.velocity.y);
         }
@@ -94,18 +99,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D col) 
+    void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.CompareTag("Ground"))
         {
             onGroundState = true; // back on ground
             countScoreState = false; // reset score state
             scoreText.text = "Score: " + score.ToString();
-        };    
+        };
     }
 
-    void OnTriggerEnter2D(Collider2D other) {
-        if (other.gameObject.CompareTag("Enemy")) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
             Debug.Log("Collided with Gomba!");
             gameOverScoreText.text = "Your Final Score: " + score.ToString();
             menuController.showGameOverScreen();
