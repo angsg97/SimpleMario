@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float speed;
-    public float maxSpeed = 10;
+    public float maxXSpeed = 10;
     public float upSpeed = 5;
 
     private Rigidbody2D marioBody;
@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         if (Mathf.Abs(moveHorizontal) > 0)
         {
             Vector2 movement = new Vector2(moveHorizontal, 0);
-            if (marioBody.velocity.magnitude < maxSpeed)
+            if (Mathf.Abs(marioBody.velocity.x) < maxXSpeed)
                 marioBody.AddForce(movement * speed);
         }
 
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground"))
+        if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Obstacles"))
         {
             onGroundState = true; // back on ground
             countScoreState = false; // reset score state
