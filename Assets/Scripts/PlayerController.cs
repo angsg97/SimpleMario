@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer marioSprite;
     private bool onGroundState = true;
     private bool faceRightState = true;
+    private Animator marioAnimator;
+    private AudioSource marioAudio;
 
     // Scoring system vars
     public Transform enemyLocation;
@@ -35,6 +37,10 @@ public class PlayerController : MonoBehaviour
 
         // Get sprite component
         marioSprite = GetComponent<SpriteRenderer>();
+
+        // Get reference to mario's animator and audio
+        marioAnimator = GetComponent<Animator>();
+        marioAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -45,12 +51,16 @@ public class PlayerController : MonoBehaviour
         {
             faceRightState = false;
             marioSprite.flipX = true;
+            if (Mathf.Abs(marioBody.velocity.x) > 1.0)
+                marioAnimator.SetTrigger("onSkid");
         }
 
         if (Input.GetKeyDown("d") && !faceRightState)
         {
             faceRightState = true;
             marioSprite.flipX = false;
+            if (Mathf.Abs(marioBody.velocity.x) > 1.0)
+                marioAnimator.SetTrigger("onSkid");
         }
 
         // when jumping, and Gomba is near Mario and we haven't registered our score
@@ -63,11 +73,8 @@ public class PlayerController : MonoBehaviour
                 Debug.Log(score);
             }
         }
-
-        if (!onGroundState)
-        {
-            transform.Rotate(0f, 0f, 3f, Space.Self);
-        }
+        marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
+        marioAnimator.SetBool("onGround", onGroundState);
     }
 
     void FixedUpdate()
@@ -117,5 +124,10 @@ public class PlayerController : MonoBehaviour
             gameOverScoreText.text = "Your Final Score: " + score.ToString();
             menuController.showGameOverScreen();
         }
+    }
+
+    void PlayJumpSound()
+    {
+        marioAudio.PlayOneShot(marioAudio.clip);
     }
 }
