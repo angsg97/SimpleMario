@@ -14,6 +14,9 @@ public class PlayerController : MonoBehaviour
     private SpriteRenderer marioSprite;
     private bool onGroundState = true;
     private bool faceRightState = true;
+    private bool rightKeyPressed = false;
+    private bool leftKeyPressed = false;
+
     private Animator marioAnimator;
     private AudioSource marioAudio;
 
@@ -46,8 +49,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // toggle state
-        if (Input.GetKeyDown("a") && faceRightState)
+        if ((Input.GetKeyDown("a") && faceRightState && !rightKeyPressed) || (Input.GetKeyUp("d") && rightKeyPressed))
         {
             faceRightState = false;
             marioSprite.flipX = true;
@@ -55,7 +59,7 @@ public class PlayerController : MonoBehaviour
                 marioAnimator.SetTrigger("onSkid");
         }
 
-        if (Input.GetKeyDown("d") && !faceRightState)
+        if ((Input.GetKeyDown("d") && !faceRightState && !leftKeyPressed) || (Input.GetKeyUp("a") && leftKeyPressed))
         {
             faceRightState = true;
             marioSprite.flipX = false;
@@ -104,6 +108,13 @@ public class PlayerController : MonoBehaviour
             onGroundState = false;
             countScoreState = true; //check if Gomba is underneath
         }
+
+        // Check for left and right movement key up and update state
+        if (Input.GetKeyUp("a")) leftKeyPressed = false;
+        if (Input.GetKeyUp("d")) rightKeyPressed = false;
+
+        if (Input.GetKeyDown("a")) leftKeyPressed = true;
+        if (Input.GetKeyDown("d")) rightKeyPressed = true;
     }
 
     void OnCollisionEnter2D(Collision2D col)
