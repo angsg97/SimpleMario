@@ -9,6 +9,8 @@ TagManager:
   - Main Menu
   - Game Over
   - Obstacles
+  - Items
+  - Pipe
   layers:
   - Default
   - TransparentFX
@@ -43,6 +45,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 210704291
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
 
     private float originalX;
-    private float maxOffset = 5.0f;
+    private float maxOffset = 4.0f;
     private float enemyPatroltime = 2.0f;
     private int moveRight = -1;
     private Vector2 velocity;
@@ -22,11 +22,13 @@ public class EnemyController : MonoBehaviour
         ComputeVelocity();
     }
 
-    void ComputeVelocity() {
-        velocity = new Vector2((moveRight)*maxOffset / enemyPatroltime, 0);
+    void ComputeVelocity()
+    {
+        velocity = new Vector2((moveRight) * maxOffset / enemyPatroltime, 0);
     }
 
-    void MoveGomba() {
+    void MoveGomba()
+    {
         enemyBody.MovePosition(enemyBody.position + velocity * Time.fixedDeltaTime);
     }
 
@@ -37,7 +39,8 @@ public class EnemyController : MonoBehaviour
         {// move gomba
             MoveGomba();
         }
-        else {
+        else
+        {
             // change direction
             moveRight *= -1;
             ComputeVelocity();

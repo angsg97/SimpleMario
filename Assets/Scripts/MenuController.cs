@@ -25,7 +25,7 @@ public class MenuController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void StartButtonClicked()
@@ -34,7 +34,6 @@ public class MenuController : MonoBehaviour
         {
             if (eachChild.name != "Score")
             {
-                Debug.Log("Child found. name: " + eachChild.name);
                 // disable them
                 eachChild.gameObject.SetActive(false);
                 Time.timeScale = 1.0f;
@@ -42,13 +41,15 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void showGameOverScreen() {
+    public void showGameOverScreen()
+    {
         foreach (Transform eachChild in transform)
         {
-            if (eachChild.tag == "Main Menu") {
+            if (eachChild.tag == "Main Menu")
+            {
                 eachChild.gameObject.SetActive(false);
             }
-            else 
+            else
             {
                 eachChild.gameObject.SetActive(true);
             }
@@ -57,7 +58,8 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 0.0f;
     }
 
-    public void resetGame() {
+    public void resetGame()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
