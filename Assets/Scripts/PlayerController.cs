@@ -21,11 +21,11 @@ public class PlayerController : MonoBehaviour
     private AudioSource marioAudio;
 
     // Scoring system vars
-    public Transform enemyLocation;
-    public Text scoreText;
-    public Text gameOverScoreText;
-    private int score = 0;
-    private bool countScoreState = false;
+    // public Transform enemyLocation;
+    // public Text scoreText;
+    // public Text gameOverScoreText;
+    // private int score = 0;
+    // private bool countScoreState = false;
 
     // get game reset function from MenuController
     public MenuController menuController;
@@ -68,15 +68,15 @@ public class PlayerController : MonoBehaviour
         }
 
         // when jumping, and Gomba is near Mario and we haven't registered our score
-        if (!onGroundState && countScoreState)
-        {
-            if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
-            {
-                countScoreState = false;
-                score++;
-                Debug.Log(score);
-            }
-        }
+        // if (!onGroundState && countScoreState)
+        // {
+        //     if (Mathf.Abs(transform.position.x - enemyLocation.position.x) < 0.5f)
+        //     {
+        //         countScoreState = false;
+        //         score++;
+        //         Debug.Log(score);
+        //     }
+        // }
         marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
         marioAnimator.SetBool("onGround", onGroundState);
     }
@@ -106,7 +106,7 @@ public class PlayerController : MonoBehaviour
         {
             marioBody.AddForce(Vector2.up * upSpeed, ForceMode2D.Impulse);
             onGroundState = false;
-            countScoreState = true; //check if Gomba is underneath
+            // countScoreState = true; //check if Gomba is underneath
         }
 
         // Check for left and right movement key up and update state
@@ -119,26 +119,23 @@ public class PlayerController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.CompareTag("Ground") ||
-            col.gameObject.CompareTag("Obstacles") ||
-            col.gameObject.CompareTag("Pipe"))
+        if (col.gameObject.CompareTag("Ground") || col.gameObject.CompareTag("Obstacles") || col.gameObject.CompareTag("Pipe"))
         {
-            Debug.Log("Ground");
             onGroundState = true; // back on ground
-            countScoreState = false; // reset score state
-            scoreText.text = "Score: " + score.ToString();
+            // countScoreState = false; // reset score state
+            // scoreText.text = "Score: " + score.ToString();
         };
     }
 
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Enemy"))
-        {
-            Debug.Log("Collided with Gomba!");
-            gameOverScoreText.text = "Your Final Score: " + score.ToString();
-            menuController.showGameOverScreen();
-        }
-    }
+    // void OnTriggerEnter2D(Collider2D other)
+    // {
+    //     if (other.gameObject.CompareTag("Enemy"))
+    //     {
+    //         Debug.Log("Collided with Gomba!");
+    //         gameOverScoreText.text = "Your Final Score: " + score.ToString();
+    //         menuController.showGameOverScreen();
+    //     }
+    // }
 
     void PlayJumpSound()
     {
