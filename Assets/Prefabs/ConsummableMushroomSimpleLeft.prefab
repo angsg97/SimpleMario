@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2262703641277232215}
   - component: {fileID: -2853147149346357129}
   m_Layer: 7
-  m_Name: ConsummableMushroomSimple
+  m_Name: ConsummableMushroomSimpleLeft
   m_TagString: Items
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,4 +146,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55c3c5095668749e5b4a30e743c264b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: -7

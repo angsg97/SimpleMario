@@ -172,3 +172,6 @@ $RECYCLE.BIN/
 
 # Packed Addressables
 [Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+
+/ForestTileset
+/ParallaxBackground

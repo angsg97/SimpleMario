@@ -123,6 +123,7 @@ public class PlayerController : MonoBehaviour
             col.gameObject.CompareTag("Obstacles") ||
             col.gameObject.CompareTag("Pipe"))
         {
+            Debug.Log("Ground");
             onGroundState = true; // back on ground
             countScoreState = false; // reset score state
             scoreText.text = "Score: " + score.ToString();
