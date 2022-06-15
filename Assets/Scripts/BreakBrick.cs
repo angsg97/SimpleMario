@@ -6,9 +6,11 @@ public class BreakBrick : MonoBehaviour
 {
     private bool broken = false;
     public GameObject prefab;
+    private AudioSource brickAudio;
     // Start is called before the first frame update
     void Start()
     {
+        brickAudio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -21,6 +23,7 @@ public class BreakBrick : MonoBehaviour
         Debug.Log("Bottom Edge");
         if (col.gameObject.CompareTag("Player") && !broken)
         {
+            PlayBreakSound();
             broken = true;
             // assume we have 5 debris per box
             for (int x = 0; x < 5; x++)
@@ -36,4 +39,10 @@ public class BreakBrick : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    void PlayBreakSound()
+    {
+        brickAudio.PlayOneShot(brickAudio.clip);
+    }
+
 }

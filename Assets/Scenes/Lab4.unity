@@ -423,6 +423,10 @@ PrefabInstance:
       propertyPath: gameOverScoreText
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1573271044018995638, guid: cb4b64d075bab8c1fae3925b1f7d2848, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -887274458167158394, guid: 4bcb45e122016c9e6b4b209b41e1f44e, type: 2}
     - target: {fileID: 7233633264619474704, guid: cb4b64d075bab8c1fae3925b1f7d2848, type: 3}
       propertyPath: m_Intensity
       value: 0.78
@@ -8766,7 +8770,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e84136d9acbe68afa1ad187fd5c1cc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnManagerObject: {fileID: 2132845787}
   gameManagerObject: {fileID: 1152265057}
 --- !u!1001 &1680455327
 PrefabInstance:
