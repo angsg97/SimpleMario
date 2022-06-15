@@ -10,8 +10,8 @@ public class GameConstants : ScriptableObject
     int currentPlayerHealth;
 
     // for Reset values
-    public Vector3 goombaSpawnPointStart1 = new Vector3(-10f, -0.45f, 0); // hardcoded location
-    public Vector3 goombaSpawnPointStart2 = new Vector3(-7f, -0.45f, 0); // hardcoded location
+    public Vector3 goombaSpawnPointStart1 = new Vector3(-12f, -0.45f, 0); // hardcoded location
+    public Vector3 goombaSpawnPointStart2 = new Vector3(-6f, -0.45f, 0); // hardcoded location
     // .. other reset values  
 
     // for Consume.cs

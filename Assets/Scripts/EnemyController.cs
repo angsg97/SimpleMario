@@ -14,13 +14,14 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        enemyBody = GetComponent<Rigidbody2D>();
+
         _renderer = GetComponent<SpriteRenderer>();
         if (_renderer == null)
         {
             Debug.LogError("Player Sprite is missing a renderer");
         }
 
-        enemyBody = GetComponent<Rigidbody2D>();
 
         // Set initial position
         this.transform.position = Random.Range(0, 2) == 0 ? gameConstants.goombaSpawnPointStart1 : gameConstants.goombaSpawnPointStart2;
@@ -30,6 +31,7 @@ public class EnemyController : MonoBehaviour
 
         // randomise initial direction
         moveRight = Random.Range(0, 2) == 0 ? -1 : 1;
+        if (moveRight == -1) _renderer.flipX = !_renderer.flipX;
 
         // compute initial velocity
         ComputeVelocity();
@@ -81,6 +83,7 @@ public class EnemyController : MonoBehaviour
         {
             // change direction
             moveRight *= -1;
+            _renderer.flipX = !_renderer.flipX;
             ComputeVelocity();
             MoveEnemy();
         }
@@ -129,6 +132,7 @@ public class EnemyController : MonoBehaviour
         }
         Debug.Log("Flatten ends");
         this.gameObject.SetActive(false);
+        this.transform.localScale = new Vector3(1, 1, 1);
         Debug.Log("Enemy returned to pool");
         yield break;
     }

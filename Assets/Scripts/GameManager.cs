@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
     public delegate void gameEvent();
     public static event gameEvent OnPlayerDeath;
+    public static event gameEvent OnEnemyDeath;
     public Text score;
     private int playerScore = 0;
 
@@ -15,10 +16,16 @@ public class GameManager : MonoBehaviour
     {
         playerScore += 1;
         score.text = "SCORE: " + playerScore.ToString();
+        spawnEnemy();
     }
 
     public void damagePlayer()
     {
         OnPlayerDeath();
+    }
+
+    public void spawnEnemy()
+    {
+        OnEnemyDeath();
     }
 }

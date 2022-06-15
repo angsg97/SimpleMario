@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public GameConstants gameConstants;
     // Start is called before the first frame update
     void Start()
     {
-
+        // subscribe to enemy death event
+        GameManager.OnEnemyDeath += spawnEnemy;
     }
 
     // Update is called once per frame
@@ -30,12 +32,18 @@ public class SpawnManager : MonoBehaviour
         if (item != null)
         {
             //set position, and other necessary states
-            item.transform.position = new Vector3(Random.Range(-4.5f, 4.5f), item.transform.position.y, 0);
+            item.transform.position = Random.Range(0, 2) == 0 ? gameConstants.goombaSpawnPointStart1 : gameConstants.goombaSpawnPointStart2;
             item.SetActive(true);
         }
         else
         {
             Debug.Log("not enough items in the pool.");
         }
+    }
+
+    public void spawnEnemy()
+    {
+        if (Random.Range(0, 2) == 0) spawnFromPooler(ObjectType.goombaEnemy);
+        else spawnFromPooler(ObjectType.greenEnemy);
     }
 }

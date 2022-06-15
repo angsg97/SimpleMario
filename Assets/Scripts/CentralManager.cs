@@ -28,4 +28,9 @@ public class CentralManager : MonoBehaviour
     {
         gameManager.damagePlayer();
     }
+
+    public void spawnEnemy()
+    {
+        gameManager.spawnEnemy();
+    }
 }
