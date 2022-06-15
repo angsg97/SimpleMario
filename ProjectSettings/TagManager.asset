@@ -20,7 +20,7 @@ TagManager:
   - UI
   - QuestionBox
   - Spawned
-  - 
+  - Player
   - 
   - 
   - 
@@ -53,4 +53,7 @@ TagManager:
     locked: 0
   - name: Obstacles
     uniqueID: 2004869571
+    locked: 0
+  - name: UI
+    uniqueID: 2596319263
     locked: 0

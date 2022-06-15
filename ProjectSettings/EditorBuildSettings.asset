@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lab2-MushroomScene.unity
     guid: 7feba112d63fa710cb479cb7b6f81b8e
+  - enabled: 1
+    path: Assets/Scenes/Lab3-URP.unity
+    guid: 2165169ececb8ff35808a9b904830619
   m_configObjects: {}
