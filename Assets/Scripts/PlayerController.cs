@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     // private bool countScoreState = false;
 
     // get game reset function from MenuController
-    public MenuController menuController;
+    public UIController uiController;
 
 
     // Start is called before the first frame update
@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour
         marioBody.AddForce(Vector2.up * 30, ForceMode2D.Impulse);
         int LayerIgnoreRaycast = LayerMask.NameToLayer("Player");
         gameObject.layer = LayerIgnoreRaycast;
+        uiController.showGameOverScreen();
     }
 
     // Update is called once per frame

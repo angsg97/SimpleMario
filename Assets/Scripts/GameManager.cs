@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
     public delegate void gameEvent();
     public static event gameEvent OnPlayerDeath;
@@ -27,5 +27,11 @@ public class GameManager : MonoBehaviour
     public void spawnEnemy()
     {
         OnEnemyDeath();
+    }
+
+    public void resetScore()
+    {
+        playerScore = 0;
+        score.text = "SCORE: " + playerScore.ToString();
     }
 }

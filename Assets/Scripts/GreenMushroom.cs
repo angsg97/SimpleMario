@@ -34,7 +34,7 @@ public class GreenMushroom : MonoBehaviour, ConsumableInterface
         if (col.gameObject.CompareTag("Player"))
         {
             // update UI
-            CentralManager.centralManagerInstance.addPowerup(t, 0, this);
+            CentralManager.centralManagerInstance.addPowerup(0, this);
             GetComponent<Collider2D>().enabled = false;
         }
     }

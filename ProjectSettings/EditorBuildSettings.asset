@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lab3-URP.unity
     guid: 2165169ececb8ff35808a9b904830619
+  - enabled: 1
+    path: Assets/Scenes/Lab4.unity
+    guid: a2270a7b5c14bf0a7b8e37d4906bb7a1
+  - enabled: 1
+    path: Assets/Scenes/Lab5.unity
+    guid: e17988b39283656c9969eecc658f03a9
   m_configObjects: {}

@@ -7,6 +7,8 @@ public class PowerUpManager : MonoBehaviour
 {
     public List<GameObject> powerupIcons;
     private List<ConsumableInterface> powerups;
+    public Texture redMushroomTexture;
+    public Texture greenMushroomTexture;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,12 +26,19 @@ public class PowerUpManager : MonoBehaviour
 
     }
 
-    public void addPowerup(Texture texture, int index, ConsumableInterface i)
+    public void addPowerup(int index, ConsumableInterface i)
     {
         Debug.Log("adding powerup");
         if (index < powerupIcons.Count)
         {
-            powerupIcons[index].GetComponent<RawImage>().texture = texture;
+            if (index == 0)
+            {
+                powerupIcons[index].GetComponent<RawImage>().texture = greenMushroomTexture;
+            }
+            else
+            {
+                powerupIcons[index].GetComponent<RawImage>().texture = redMushroomTexture;
+            }
             powerupIcons[index].SetActive(true);
             powerups[index] = i;
         }
@@ -44,14 +53,37 @@ public class PowerUpManager : MonoBehaviour
         }
     }
 
-    void cast(int i, GameObject p)
+    void cast(int i, GameObject player)
     {
         if (powerups[i] != null)
         {
             Debug.Log("Casted");
-            powerups[i].consumedBy(p); // interface method
+            if (i == 0)
+            {
+                player.GetComponent<PlayerController>().upSpeed += 10;
+                StartCoroutine(removeSpeedEffect(player));
+            }
+            else
+            {
+                // give player jump boost
+                player.GetComponent<PlayerController>().maxSpeed *= 2;
+                StartCoroutine(removeJumpEffect(player));
+            }
+            // powerups[i].consumedBy(p); // interface method
             removePowerup(i);
         }
+    }
+
+    IEnumerator removeSpeedEffect(GameObject player)
+    {
+        yield return new WaitForSeconds(5.0f);
+        player.GetComponent<PlayerController>().upSpeed -= 10;
+    }
+
+    IEnumerator removeJumpEffect(GameObject player)
+    {
+        yield return new WaitForSeconds(5.0f);
+        player.GetComponent<PlayerController>().maxSpeed /= 2;
     }
 
     public void consumePowerup(KeyCode k, GameObject player)
