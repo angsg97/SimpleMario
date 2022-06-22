@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3851901193691043721}
   - component: {fileID: 2262703641277232215}
   - component: {fileID: -2853147149346357129}
+  - component: {fileID: -4223172059197055517}
   m_Layer: 7
   m_Name: RedMushroom
   m_TagString: Items
@@ -29,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1496022544014263287}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.58, y: 3.99, z: 0}
-  m_LocalScale: {x: 5.3, y: 5.3, z: 5.3}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -147,3 +148,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+--- !u!114 &-4223172059197055517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496022544014263287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e2fb440c14baa398b76e4fd97e0fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 2800000, guid: cde7c947acdc0bae5a8ff6ff7bf0cf23, type: 3}

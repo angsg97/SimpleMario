@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3851901193691043721}
   - component: {fileID: 2262703641277232215}
   - component: {fileID: -2853147149346357129}
+  - component: {fileID: -8348150897982372421}
   m_Layer: 7
   m_Name: ConsummableMushroomSimpleRight
   m_TagString: Items
@@ -147,3 +148,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+--- !u!114 &-8348150897982372421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1496022544014263287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7e2fb440c14baa398b76e4fd97e0fa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  t: {fileID: 2800000, guid: 38e0e8426672e4822a0598cdbc315077, type: 3}

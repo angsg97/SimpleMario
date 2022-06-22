@@ -8,11 +8,15 @@ public class MushroomController : MonoBehaviour
     private int moveRight = 1;
     private Vector2 velocity;
     private Rigidbody2D mushroomBody;
+    private BoxCollider2D collider;
     private bool hasCollide = false;
+    private Vector3 scaler;
 
     // Start is called before the first frame update
     void Start()
     {
+        scaler = transform.localScale / (float)5;
+        collider = GetComponent<BoxCollider2D>();
         mushroomBody = GetComponent<Rigidbody2D>();
         mushroomBody.AddForce(Vector2.up * 30, ForceMode2D.Impulse);
         ComputeVelocity();
@@ -21,7 +25,7 @@ public class MushroomController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        moveMushroom();
+        if (!hasCollide) moveMushroom();
     }
 
     void ComputeVelocity()
@@ -40,6 +44,9 @@ public class MushroomController : MonoBehaviour
         {
             speed = 0;
             ComputeVelocity();
+            collider.enabled = false; mushroomBody.velocity = Vector2.zero;
+            mushroomBody.bodyType = RigidbodyType2D.Static;
+            StartCoroutine("ScaleOut");
         }
 
         if (col.gameObject.CompareTag("Pipe"))
@@ -59,8 +66,38 @@ public class MushroomController : MonoBehaviour
         hasCollide = false;
     }
 
-    void OnBecameInvisible()
+    // void OnBecameInvisible()
+    // {
+    //     Destroy(gameObject);
+    // }
+
+    IEnumerator ScaleOut()
     {
-        Destroy(gameObject);
+
+        // Vector2 direction = new Vector2(Random.Range(-1.0f, 1.0f), 1);
+        // rigidBody.AddForce(direction.normalized * 10, ForceMode2D.Impulse);
+        // rigidBody.AddTorque(10, ForceMode2D.Impulse);
+        // // wait for next frame
+        // yield return null;
+
+        // render turning big for 3 frames
+        for (int step = 0; step < 3; step++)
+        {
+            this.transform.localScale = this.transform.localScale + scaler;
+            // wait for next frame
+            yield return null;
+        }
+
+
+        for (int step = 0; step < 8; step++)
+        {
+            this.transform.localScale = this.transform.localScale - scaler;
+            // wait for next frame
+            yield return null;
+        }
+
+
+        // Destroy(gameObject);
+
     }
 }

@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float speed;
-    public float maxXSpeed = 10;
+    public float maxSpeed = 10;
     public float upSpeed = 5;
 
     private Rigidbody2D marioBody;
@@ -95,6 +95,17 @@ public class PlayerController : MonoBehaviour
             //         Debug.Log(score);
             //     }
             // }
+
+            if (Input.GetKeyDown("z"))
+            {
+                CentralManager.centralManagerInstance.consumePowerup(KeyCode.Z, this.gameObject);
+            }
+
+            if (Input.GetKeyDown("x"))
+            {
+                CentralManager.centralManagerInstance.consumePowerup(KeyCode.X, this.gameObject);
+            }
+
             marioAnimator.SetFloat("xSpeed", Mathf.Abs(marioBody.velocity.x));
             marioAnimator.SetBool("onGround", onGroundState);
         }
@@ -114,7 +125,7 @@ public class PlayerController : MonoBehaviour
             if (Mathf.Abs(moveHorizontal) > 0)
             {
                 Vector2 movement = new Vector2(moveHorizontal, 0);
-                if (Mathf.Abs(marioBody.velocity.x) < maxXSpeed)
+                if (Mathf.Abs(marioBody.velocity.x) < maxSpeed)
                     marioBody.AddForce(movement * speed);
             }
 
